@@ -60,7 +60,7 @@ class Command(BaseCommand):
         )
         postalCodes = generate_list_of_postalcode_objects(xml_tree)
         self.stdout.write("Creating database...")
-        PostalCode.objects.bulk_create([PostalCode(**data) for data in postalCodes])
+        PostalCode.objects.bulk_create([PostalCode(**data) for data in postalCodes], 1000)
         self.stdout.write(
             self.style.SUCCESS(
                 "The postal code database has been successfully populated"
